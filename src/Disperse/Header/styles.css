@@ -1,0 +1,14 @@
+.header_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text_area_label {
+    font-size: 20px;
+}
+
+.upload_file_text {
+    font-size: 18px;
+    color: #ADAEAF;
+}

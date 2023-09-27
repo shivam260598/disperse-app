@@ -1,0 +1,27 @@
+.text_area_container {
+    background: #10121A;
+    height: 30vh;
+    border-radius: 8px;
+    padding: 24px 40px;
+    display: flex;
+    margin-top: 16px;
+    overflow: scroll;
+}
+
+.line_numbers {
+    border-right: 1px solid #fff;
+    padding-right: 6px;
+}
+
+.input_box {
+    width: 100%;
+    margin-left: 12px;
+    background: #10121A;
+    color: #fff;
+    border-color: #10121A;
+    font-size: 16px;
+}
+
+.input_box:focus {
+    outline: none;
+}

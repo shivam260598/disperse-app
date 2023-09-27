@@ -1,0 +1,27 @@
+.footer_main_container {
+    margin-top: 40px;
+}
+
+.footer_text_container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.separated_by_text {
+}
+
+.show_example {
+    color: #757686;
+    margin-right: 20px;
+}
+
+.next_button {
+    width: 100%;
+    margin-top: 40px;
+    padding: 16px 0;
+    border-radius: 100px;
+    background: #865EDF;
+    border: 1px solid #865EDF;
+    cursor: pointer;
+}

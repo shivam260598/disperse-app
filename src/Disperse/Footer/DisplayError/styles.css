@@ -1,0 +1,50 @@
+.error_container {
+    margin-top: 24px;
+}
+
+.duplicate_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.action_container {
+    display: flex;
+    color: #AA342E;
+}
+
+.action_text {
+    cursor: pointer;
+}
+
+.action_text:hover {
+    text-decoration: underline;
+}
+
+.separator_line {
+    border: 1px solid #AA342E;
+    margin: 0 20px;
+}
+
+.display_container {
+    margin-top: 24px;
+    border: 1px solid #AA342E;
+    color: #AA342E;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.alert_image {
+    height: 20px;
+    width: 20px;
+}
+
+.errors_text {
+    margin-left: 12px;
+}
+
+.error {
+    gap: 12px;
+    margin-bottom: 4px;
+}
