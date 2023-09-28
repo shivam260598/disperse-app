@@ -12,8 +12,6 @@ function TextAreaComponent({ amounts = '', setAmounts = () => {} }) {
 
         if(element) {
             element.onscroll = (e) => {
-                const bottomReached = (element.scrollTop + element.offsetHeight) >= (element.scrollHeight);
-                if (bottomReached) lineElRef.current.scrollTop = element.scrollTop;
                 lineElRef.current.scrollTop = element.scrollTop;
             };
         };
