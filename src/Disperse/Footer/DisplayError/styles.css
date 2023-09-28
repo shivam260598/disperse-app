@@ -33,6 +33,8 @@
     padding: 20px;
     display: flex;
     align-items: flex-start;
+    max-height: 100px;
+    overflow: auto;
 }
 
 .alert_image {
