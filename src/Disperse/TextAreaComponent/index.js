@@ -1,46 +1,60 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './styles.css';
 import GLOBAL_CONSTANTS from '../../commons/global';
 
-function DisplayNumbers({ amounts = '' }) {
-    const amountArr = amounts.split(GLOBAL_CONSTANTS.new_line_escape_sequence);
-
-    return (
-        amountArr || []).map((_, index) => (
-            <div>{index + 1}</div>
-        )
-    );
-}
-
 function TextAreaComponent({ amounts = '', setAmounts = () => {} }) {
-//     const prefix = '1 ';
+    const lineElRef = useRef();
+    const textRef = useRef();
+    const textContainerRef = useRef();
+    const [line, setLine] = useState(GLOBAL_CONSTANTS.one);
+    const [activeLine, setActiveLine] = useState(GLOBAL_CONSTANTS.one);
 
-//     const textareaRef = useRef(null);
+    useEffect(() => { handleScroller(); }, []);
 
-//   useEffect(() => {
-//     if (textareaRef.current) {
-//       textareaRef.current.value = prefix + (amounts || '').substring(prefix.length);
-//     }
-//   }, [amounts]);
+    const handleScroller = () => {
+        let element = textRef?.current || null;
 
-//   const handleInputChange = (e) => {
-//     const input = e.target.value || '';
-//     setAmounts(input);
-//   };
+        if(element) {
+            element.onscroll = (e) => {
+                const bottomReached = (element.scrollTop + element.offsetHeight) >= (element.scrollHeight);
+                if (bottomReached) lineElRef.current.scrollTop = element.scrollTop;
+                lineElRef.current.scrollTop = element.scrollTop
+            };
+        };
+    };
+
+    const textChangeHandler = (e) => {
+        const val = e.target.value;
+        const newLine = (val.match(/\n/g) || []).length;
+        if(newLine > 0) setLine(newLine + 1);
+        if(newLine === 0) setLine(1);
+
+        activeLineChangeHandler(e);
+        setAmounts(val);
+    }
+
+    const activeLineChangeHandler = (e) => {
+        const activeLineVal = e.target.value.substr(0, e.target.selectionStart)
+            .split(GLOBAL_CONSTANTS.new_line_escape_sequence).length;
+        if(activeLine  !== activeLineVal) setActiveLine(activeLineVal);
+    }
+
+    const renderNumberOfLines = () => {
+        return [...Array(line).keys()].map(i => <span key={i} >{i+1}</span>);
+    };
 
     return (
-           <div className="text_area_container">
-                <div className="line_numbers">
-                    <DisplayNumbers amounts={amounts} />
-                </div>
-                <textarea
-                    className="input_box"
+        <div className="text_area_container">
+            <div className="text_container" ref={textContainerRef}>
+                <div className="line_number" ref={lineElRef}>{renderNumberOfLines()}</div>
+                <textarea 
+                    onMouseUp={activeLineChangeHandler} 
+                    ref={textRef}
+                    onChange={textChangeHandler}
                     value={amounts}
-                    onChange={(e) => setAmounts(e.target.value)}
-                    // ref={textareaRef}
-                    // onChange={handleInputChange}
                 />
             </div>
+        </div>
     );
 }
 
